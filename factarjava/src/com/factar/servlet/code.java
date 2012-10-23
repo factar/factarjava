@@ -65,12 +65,11 @@ public class code extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
 		System.out.println(name);
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		request.setCharacterEncoding("UTF-8");
 		String name1 = request.getParameter("name");
 		System.out.println(name1);
 		
