@@ -23,9 +23,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  	<div style="width: 300px;height: 300px;background-color: green;">
     <form action="code" method="post">
     	<input name="name" type="text"/>
    		<input type="submit" value="提交">
     </form>
+    </div>
   </body>
 </html>
