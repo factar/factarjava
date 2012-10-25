@@ -1,10 +1,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Validform</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/pageicon.png" />
+<link href="/factarjava/css/validform/style.css" type="text/css" rel="stylesheet"  media="all" />
+<link href="/factarjava/css/validform/demo.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../js/jqueryall.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#registerform").Validform({
+			tiptype : 2
+		});
+	})
+</script>
 </head>
 <body>
+<div class="main">
+    <div class="wraper">
+        <form id="registerform" method="post" action="demo/ajax_post.php">
+            <table width="100%" style="table-layout:fixed;">
+                <tr>
+                    <td class="need" style="width:10px;">*</td>
+                    <td style="width:70px;">昵称：</td>
+                    <td style="width:205px;"><input type="text" value="" class="inputxt" datatype="s6-18" errormsg="昵称至少6个字符,最多18个字符！" /></td>
+                    <td><div class="Validform_checktip"></div></td>
+                </tr>
+    </div>
+</div>
 
 </body>
 </html>
