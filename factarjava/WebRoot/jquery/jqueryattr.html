@@ -3,8 +3,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="../js/jqueryall.js"></script>
+<script type="text/javascript">
+// 	console.log($("#choose").attr("disabled",false));
+$(document).ready(
+			function(){
+				console.log($("#choose").attr("disabled"));
+				$("#inputtxt").attr("disabled",false);
+			}
+		);
+
+</script>
 </head>
 <body>
-<input type="radio" disabled="disabled" value="checked"/>
+<input type="radio" value="checked" id="choose" disabled="disabled"/>单选
+<br>
+<input  type="text" id="inputtxt" disabled="disabled">输入框 
+
 </body>
 </html>

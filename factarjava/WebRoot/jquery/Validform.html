@@ -1,32 +1,249 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Validform</title>
-<link rel="shortcut icon" type="image/x-icon" href="../images/pageicon.png" />
-<link href="/factarjava/css/validform/style.css" type="text/css" rel="stylesheet"  media="all" />
-<link href="/factarjava/css/validform/demo.css" type="text/css" rel="stylesheet" />
+<head>
+<base href="<%=basePath%>">
+<title>Í¼²ã¹ÜÀí</title>
+<link rel="stylesheet" type="text/css" href="../css/layerManager.css">
 <script type="text/javascript" src="../js/jqueryall.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#registerform").Validform({
-			tiptype : 2
+		$("#addLayerForm").Validform({
+			tiptype:function(msg,o,cssctl){
+				if(!o.obj.is("form")){//ÑéÖ¤±íµ¥ÔªËØÊ±o.objÎª¸Ã±íµ¥ÔªËØ£¬È«²¿ÑéÖ¤Í¨¹ýÌá½»±íµ¥Ê±o.objÎª¸Ã±íµ¥¶ÔÏó;
+					var objtip=o.obj.siblings(".Validform_checktip");
+					cssctl(objtip,o.type);
+					objtip.text(msg);
+				}
+			}
 		});
-	})
+	});
+
 </script>
 </head>
 <body>
-<div class="main">
-    <div class="wraper">
-        <form id="registerform" method="post" action="demo/ajax_post.php">
-            <table width="100%" style="table-layout:fixed;">
-                <tr>
-                    <td class="need" style="width:10px;">*</td>
-                    <td style="width:70px;">æ˜µç§°ï¼š</td>
-                    <td style="width:205px;"><input type="text" value="" class="inputxt" datatype="s6-18" errormsg="æ˜µç§°è‡³å°‘6ä¸ªå­—ç¬¦,æœ€å¤š18ä¸ªå­—ç¬¦ï¼" /></td>
-                    <td><div class="Validform_checktip"></div></td>
-                </tr>
-    </div>
-</div>
+	<div id="rightdiv"
+		style="width: 76%; background-color: #f2fafc; float: left;">
+		<form id="addLayerForm" action="">
+			<!-- 			<p> -->
+			<!-- 				<label class="leftlable"> ½ÚµãÃû³Æ: </label> <input type="text" value="" -->
+			<!-- 					id="treenodeName" name="treenodeName" class="valuelabel" -->
+			<!-- 					datatype="*" nullmsg="ÇëÌîÐ´½ÚµãÃû³Æ" errormsg="ÇëÌîÐ´½ÚµãÃû³Æ£¡" /> <label -->
+			<!-- 					class="Validform_checktip"> </label> -->
+			<!-- 			</p> -->
+			<!-- 			<p> -->
+			<!-- 				<label class="leftlable"> ÊÇ·ñÊÇÍ¼²ã: </label> <input type="radio" -->
+			<!-- 					name="isLayer" id="isLayerTrue" class="valuelabel" -->
+			<!-- 					onclick="isLayerChange()" value="yes" disabled="disabled"/>ÊÇ <input -->
+			<!-- 					type="radio" name="isLayer" onclick="isLayerChange()" -->
+			<!-- 					id="isLayerFalse" value="no" checked="checked"  />·ñ -->
+			<!-- 			</p> -->
+			<div id="baseinfo" style="height: 250px; display: block;">
+				<p>
+					<label class="leftlable">¸¸½Úµã: </label> <input type="text" value=""
+						id="parentNode" class="valuelabel" disabled="disabled" />
+				</p>
+				<p>
+					<label class="leftlable"> ½ÚµãÃû³Æ: </label> <input type="text"
+						value="" id="treenodeName" name="treenodeName" class="valuelabel"
+						datatype="*" nullmsg="ÇëÌîÐ´½ÚµãÃû³Æ" errormsg="ÇëÌîÐ´½ÚµãÃû³Æ£¡" /> <label
+						class="Validform_checktip"> </label>
+				</p>
+				<p>
+					<label class="leftlable"> ÊÇ·ñÊÇÍ¼²ã: </label> <input type="radio"
+						name="isLayer" id="isLayerTrue" class="valuelabel"
+						onclick="isLayerChange()" value="yes" disabled="disabled" />ÊÇ <input
+						type="radio" name="isLayer" onclick="isLayerChange()"
+						id="isLayerFalse" value="no" checked="checked" disabled="disabled" />·ñ
+				</p>
+				<p>
+					<label class="leftlable"> Ñ¡ÔñÍ¼²ã: </label> <select class="valuelabel"
+						id="layerSelect" datatype="*" nullmsg="ÇëÑ¡ÔñÍ¼²ã" errormsg="ÇëÑ¡ÔñÍ¼²ã"
+						onchange="changeFieldSelect()" disabled="disabled">
+					</select> <label class="Validform_checktip"></label>
+				</p>
+				<p>
+					<label class="leftlable"> ²éÑ¯×Ö¶Î: </label> <select class="valuelabel"
+						id="fieldSelect" datatype="*" nullmsg="ÇëÑ¡Ôñ²éÑ¯×Ö¶Î" errormsg="ÇëÑ¡Ôñ²éÑ¯×Ö¶Î"
+						disabled="disabled">
+						<option value="">ÇëÑ¡Ôñ²éÑ¯×Ö¶Î</option>
+					</select> <label class="Validform_checktip"></label>
+				</p>
+				<div style="height: 28px; width: 100%; margin: 0px;">
+					<label class="leftlable"> ÏÔÊ¾×Ö¶Î: </label>
+					<div id="showField" style="width: 400px; float: left;"></div>
+				</div>
+				<p>
+					<label class="leftlable"> ÖÜ±ß²éÑ¯:: </label> <input type="radio"
+						class="valuelabel" name="zbField" onclick="isZb(this)"
+						id="isZbTrue" value="1" disabled="disabled" />
+					ÊÇ&nbsp;&nbsp;&nbsp; <input type="radio" name="zbField"
+						checked="checked" id="isZbFalse" onclick="isZb(this)" value="0"
+						disabled="disabled" /> ·ñ
 
+				</p>
+				<p>
+					<label class="leftlable"> ÖÜ±ß²éÑ¯Í¼²ã: </label> <input type="text"
+						id="zbLayerField" value="" class="valuelabel" disabled="disabled" />
+					<input id="zbSelBtn" type="button" value="Ñ¡Ôñ" disabled="disabled"
+						onclick="loadZbTree()" />
+
+				</p>
+				<p>
+					<label class="leftlable"> Í¼²ãÀàÐÍ: </label> <select id="layertype"
+						class="valuelabel" id="layerType" onchange="layerTypeChange()"
+						disabled="disabled">
+						<option value="1">ÒµÎñÍ¼²ã</option>
+						<option value="actual">´«¸ÐÊý¾Ý</option>
+						<option value="camera">ÊÓÆµÍ¼Ïñ</option>
+					</select>
+				</p>
+			</div>
+			<!--		ÒµÎñÍ¼²ãÅäÖÃdiv								-->
+			<div id="layerTypeContent"
+				style="height: 220; width: 100%; overflow-y: scroll; OVERFLOW-x: none; display: none; margin: 0px;">
+				<p>
+					<label class="leftlable"> ÊÇ·ñ¹ØÁªÆ½ÃæÍ¼: </label> <input
+						class="valuelabel" type="radio" name="pmtField" value="1"
+						id="isPmtTrue" /> <label> ÊÇ </label> <input type="radio"
+						name="pmtField" checked="checked" id="isPmtFalse" value="0" /> <label
+						class="otherlabel"> ·ñ </label>
+				</p>
+				<p>
+					<label class="leftlable"> ÊÇ·ñ¹ØÁªÊµÊ±Êý¾Ý: </label> <input
+						class="valuelabel" type="radio" name="isLink" value="yes"
+						onclick="isLinkChange()" id="isLinkTrue" /> <label
+						class="otherlabel"> ÊÇ </label> <input class="radiocss"
+						type="radio" name="isLink" checked="checked" value="no"
+						onclick="isLinkChange()" id="isLinkFalse" /> <label
+						class="otherlabel"> ·ñ </label>
+				</p>
+				<p>
+					<label class="leftlable"> ±¾±í¹ØÁª×Ö¶Î: </label> <input type="text"
+						id="userField" value="" class="valuelabel" disabled="disabled"
+						nullmsg="ÇëÑ¡ÔñÍ¼²ã" errormsg="ÇëÑ¡ÔñÍ¼²ã" datatype="*"> <label
+						class="Validform_checktip"></label>
+				</p>
+				<p>
+					<label class="leftlable"> Éè±¸±íÃû: </label> <input type="text"
+						id="sbtable" value="" class="valuelabel" disabled="disabled"
+						nullmsg="ÇëÑ¡ÔñÍ¼²ã" errormsg="ÇëÑ¡ÔñÍ¼²ã" datatype="*"> <label
+						class="Validform_checktip"></label>
+
+				</p>
+				<p>
+					<label class="leftlable"> Éè±¸±í¹ØÁª×Ö¶Î: </label> <input type="text"
+						id="sbField" value="" class="valuelabel" disabled="disabled"
+						nullmsg="ÇëÑ¡ÔñÍ¼²ã" errormsg="ÇëÑ¡ÔñÍ¼²ã" datatype="*"> <label
+						class="Validform_checktip"></label>
+
+				</p>
+				<p>
+					<label class="leftlable"> ÊµÊ±Êý¾Ý±íÃû³Æ: </label> <input type="text"
+						id="ssTable" value="" class="valuelabel" disabled="disabled"
+						nullmsg="ÇëÑ¡ÔñÍ¼²ã" errormsg="ÇëÑ¡ÔñÍ¼²ã" datatype="*"> <label
+						class="Validform_checktip"></label>
+				</p>
+				<p>
+					<label class="leftlable"> ÊµÊ±±í¹ØÁª×Ö¶Î: </label> <input type="text"
+						id="ssField" value="" class="valuelabel" disabled="disabled"
+						nullmsg="ÇëÑ¡ÔñÍ¼²ã" errormsg="ÇëÑ¡ÔñÍ¼²ã" datatype="*"> <label
+						class="Validform_checktip"></label>
+				</p>
+				<p>
+					<label class="leftlable"> ÊµÊ±Êý¾Ý×Ö¶Î: </label> <input type="text"
+						id="actualValue" value="" class="valuelabel" disabled="disabled"
+						nullmsg="ÇëÑ¡ÔñÍ¼²ã" errormsg="ÇëÑ¡ÔñÍ¼²ã" datatype="*"> <label
+						class="Validform_checktip"></label>
+				</p>
+				<p>
+					<label class="leftlable"> ÊµÊ±Êý¾ÝË¢ÐÂÊ±¼ä: </label> <input type="text"
+						id="refreshTime" value="5000" class="valuelabel"
+						disabled="disabled" nullmsg="ÇëÑ¡ÔñÍ¼²ã" errormsg="ÇëÑ¡ÔñÍ¼²ã" datatype="*">
+					<label style="position: relative; top: 6px; left: 0px;">
+						(µ¥Î»£ººÁÃë) </label> <label class="Validform_checktip"></label>
+				</p>
+				<p>
+					<label class="leftlable"> ÀúÊ·Õ¹Ê¾: </label> <input class="valuelabel"
+						type="radio" name="isHistory" value="1" /> <label
+						class="otherlabel"> ÊÇ </label> <input class="radiocss"
+						type="radio" name="isHistory" checked="checked" value="0" /> <label
+						class="otherlabel"> ·ñ </label>
+				</p>
+				<div>
+					<label class="leftlable"> Í¼±ê: </label>
+					<iframe id="fileuploadiframe" src='backstage/markerupload.jsp'
+						style="width: 300px; float: left; height: 26px; margin-left: 10px;"
+						frameborder='0' scrolling='no'> </iframe>
+					<div id="tubiaodiv"
+						style="float: left; display: none; padding-top: 4px; margin-left: 10px;">
+						<img id="tubiao" src=""
+							style="width: 25px; height: 25px; float: left;" /> <input
+							type="button" value="¸ü¸Ä" style="float: left;"
+							onclick="changetubiao()" />
+					</div>
+				</div>
+			</div>
+			<div id="layerTypeActual"
+				style="height: 245; width: 100%; overflow-y: scroll; OVERFLOW-x: none; display: none;">
+				<p>
+					<label class="leftlable"> ÊµÊ±Êý¾Ý±íÃû: </label> <input type="text"
+						id="ssTable" value="" class="labelvalue" disabled="disabled">
+				</p>
+				<p>
+					<label class="leftlable"> ±¾±í¹ØÁª×Ö¶Î: </label> <input type="text"
+						id="userField" value="" class="labelvalue" disabled="disabled">
+				</p>
+				<p>
+					<label class="leftlable"> ÊµÊ±±í¹ØÁª×Ö¶Î: </label> <input type="text"
+						id="ssField" value="" class="labelvalue" disabled="disabled" />
+				</p>
+				<p>
+					<label class="leftlable"> ÊµÊ±Êý¾Ý×Ö¶Î: </label> <input type="text"
+						id="actualValue" value="" class="labelvalue" disabled="disabled" />
+				</p>
+				<p>
+					<label class="leftlable"> ÊµÊ±±íÏÔÊ¾×Ö¶Î: </label> <input type="text"
+						id="actualLayerFields" value="" class="labelvalue"
+						disabled="disabled" />
+				</p>
+				<p>
+					<label class="leftlable"> ÊµÊ±±í±êÌâ: </label> <input type="text"
+						id="actualTitle" value="" class="labelvalue" disabled="disabled" />
+				</p>
+				<p>
+					<label class="leftlable"> ´«¸ÐÊý¾ÝË¢ÐÂÊ±¼ä: </label> <input type="text"
+						id="refreshTime" value="5000" class="labelvalue"
+						disabled="disabled" /> <label
+						style="position: relative; top: 6px; left: 0px;"> (µ¥Î»£ººÁÃë)
+					</label>
+				</p>
+				<p>
+					<label class="leftlable"> ÀúÊ·Õ¹Ê¾: </label> <input class="radiocss"
+						type="radio" name="isHistory" value="1" /> <label
+						class="otherlabel"> ÊÇ </label> <input class="radiocss"
+						type="radio" name="isHistory" checked="checked" value="0" /> <label
+						class="otherlabel"> ·ñ </label>
+				</p>
+				<p>
+					<label class="leftlable"> ´«¸ÐÊý¾ÝÍ¼Æ¬Î¬»¤: </label>
+					<textarea rows="3" id="cgsjRuleArea" cols="40" name="ff" readonly>{iconRefresh:false}</textarea>
+					<input id="cgsjBtn" type="button" value="¹ÜÀí"
+						onclick="showImageManage()" />
+				</p>
+			</div>
+			<div id="layerTypeCamera"
+				style="height: 245; width: 100%; overflow-y: scroll; OVERFLOW-x: none; display: none;">
+				<p>
+					<label class="leftlable"> Éè±¸id×Ö¶Î: </label> <input type="text"
+						id="sbidfield" value="" class="labelvalue" disabled="disabled">
+				</p>
+			</div>
+			<div id="savediv">
+				<input type="submit" value="±£´æ" id="saveBut" /> <input
+					type="button" value="È¡Ïû" id="cancelBut" onclick="clearBut()" />
+			</div>
+		</form>
+	</div>
+	</div>
 </body>
 </html>
